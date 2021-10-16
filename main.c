@@ -15,18 +15,8 @@ int main(){
     if(p1_spectre == NULL) exit(1);
 
     fscanf(p1_spectre,"%d\n",&npt);
-    printf("nombre npt: %d\n",npt);
-
-    double longueurOnde=0.0 , intensiteRelative=0.0;
-    for(int i=0;i<npt;i++){
-        fscanf(p1_spectre," %lf %lf\n",&longueurOnde,&intensiteRelative);
-        lambda[i]=longueurOnde;
-        intens[i]=intensiteRelative;
-    }
-    printf("Les donnees lues: \n");
-    for(int i=0;i<npt;i++){
-        printf(" %lf %lf\n",lambda[i],intens[i]);
-    }
+    for(int i=0;i<npt;i++)
+        fscanf(p1_spectre," %lf %lf\n", lambda[i],intens[i]);
     fclose(p1_spectre);
 
 
