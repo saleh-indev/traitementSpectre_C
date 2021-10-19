@@ -19,7 +19,9 @@ int main(){
         fscanf(p1_spectre," %lf %lf\n", lambda[i],intens[i]);
     fclose(p1_spectre);
 
-
+    printf("LES INFORMATIONS DU FICHIER INITIAL :");
+    for(int i=0;i<npt;i++)
+        printf("%lf %lf\n",lambda[i],intens[i]);
     //2)---------------------------------------------------------------
     FILE *p1_spectre_lu= fopen("P1-spectre-lu.txt","w");
     if(p1_spectre_lu == NULL) exit(1);
@@ -29,7 +31,6 @@ int main(){
 
 
     //3)----------------------------------------------------------------
-
     int N=0;
     float intensf[NB_MAX];
     printf("Donnez la valeur de N : ");
@@ -40,7 +41,6 @@ int main(){
     int i=N,j=0;
     while( i < (npt-N)){
         intensf[i]=0;
-
         j=i-N;
         while( j <= (i+N)){
             intensf[i]=intensf[i] + poids*intens[j];
@@ -48,7 +48,6 @@ int main(){
         }
         i++;
     }
-    //Complete reste (10 premiers et derniers)
     for(int i=0;i<N;i++){
         intensf[i]=intens[i];
         intensf[npt-N+i]=intens[npt-N+i];
@@ -73,7 +72,7 @@ int main(){
              if(intens[i]>maxIntensity) maxIntensity = intens[i];
          }
      }
-    //Bonus 
+    //Programme de tri
     for (int i = 1; i < npt; ++i) {
         double valeurIntensity = intens[i] , valeurLambda =  lambda[i];
         for (int j = i; j > 0 && intens[j-1] < valeurIntensity; j--)
@@ -88,6 +87,5 @@ int main(){
     for(int i=0;i<npt;i++)
         fprintf(p1_spectre_tri,"%lf %lf\n",lambda[i],intens[i]);
     fclose(p1_spectre_tri); 
-
     return 0;
 }
